@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza Heaven</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      header {
+        background: #333;
+        color: #fff;
+        padding: 20px 0;
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 24px;
+        margin-left: 20px;
+      }
+
+      header nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      header nav ul li {
+        margin: 0 10px;
+      }
+
+      header nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .hamburger {
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 4px 0;
+      }
+      .hero {
+        background: url("./bg.jpg") no-repeat center center/cover;
+        color: #fff;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .btn,
+      .btn1 {
+        background: #ff6347;
+        color: #fff;
+        padding: 10px 20px;
+        margin-bottom: 0;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .menu {
+        padding: 40px 0;
+        background: #fff;
+      }
+
+      .menu h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 36px;
+      }
+
+      .pizza-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .pizza-item img {
+        width: auto;
+        height: 200px;
+        border-radius: 20px;
+        justify-content: center;
+        object-fit: cover;
+        margin-bottom: 10px;
+      }
+
+      .pizza-item {
+        background: #f4f4f4;
+        padding: 20px;
+
+        border-radius: 10px;
+        text-align: center;
+        width: 350px;
+      }
+
+      .contact {
+        padding: 40px 0;
+        background: #333;
+        color: #fff;
+      }
+
+      .contact h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 36px;
+      }
+
+      #contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #contact-form input,
+      #contact-form textarea {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+      }
+
+      footer {
+        background: #222;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      /* About Us Section */
+      .about {
+        padding: 50px 0;
+        background: #fff;
+        text-align: center;
+      }
+
+      .about h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .about p {
+        font-size: 18px;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto 20px;
+      }
+
+      .about img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+
+      /* Testimonials Section */
+      .testimonials {
+        padding: 50px 0;
+        background: #f4f4f4;
+        text-align: center;
+      }
+
+      .testimonials h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .testimonial-item {
+        margin-bottom: 30px;
+      }
+
+      .testimonial-item p {
+        font-size: 18px;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto;
+        font-style: italic;
+      }
+
+      .testimonial-item h3 {
+        font-size: 20px;
+        margin-top: 10px;
+        color: #333;
+      }
+
+      /* FAQs Section */
+      .faqs {
+        padding: 50px 0;
+        background: #fff;
+        text-align: center;
+      }
+
+      .faqs h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .faq-item {
+        margin-bottom: 20px;
+      }
+
+      .faq-item h3 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .faq-item p {
+        font-size: 18px;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Newsletter Section */
+      .newsletter {
+        padding: 50px 0;
+
+        background: #f4f4f4;
+        color: black;
+        text-align: center;
+      }
+
+      .newsletter h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .newsletter p {
+        font-size: 18px;
+        margin-bottom: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .newsletter input[type="email"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 300px;
+      }
+
+      .newsletter button {
+        background: #ff6347;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .contact {
+        padding: 40px 0;
+        background: #333;
+        color: #fff;
+      }
+
+      .contact h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 36px;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+
+      .contact-item {
+        text-align: center;
+        margin: 0 20px;
+      }
+
+      .contact-item h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .contact-item p {
+        font-size: 18px;
+      }
+
+      .contact-item a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .contact-item a:hover {
+        text-decoration: underline;
+      }
+
+      .contact-para {
+        margin-left: 550px;
+        padding-bottom: 50px;
+        font-size: small;
+      }
+
+      #contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #contact-form input,
+      #contact-form textarea {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+      }
+
+      #contact-form input[type="text"] {
+        border: 1px solid #ddd;
+      }
+
+      #contact-form input[type="email"] {
+        border: 1px solid #ddd;
+      }
+
+      #contact-form textarea {
+        border: 1px solid #ddd;
+      }
+
+      #contact-form button {
+        background: #ff6347;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #contact-form button:hover {
+        background: #e55347;
+      }
+      /* General Styles for Mobile */
+      @media (max-width: 768px) {
+        header .container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        header h1 {
+          margin: 0;
+          margin-bottom: 10px;
+        }
+
+        header nav ul {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        header nav ul li {
+          margin: 10px 0;
+        }
+
+        header nav ul {
+          flex-direction: column;
+          align-items: center;
+          background: #4a4a4a;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 100%;
+          height: 350px;
+          display: none; /* Hide navigation by default */
+        }
+
+        header nav ul.show {
+          display: flex; /* Show navigation when toggled */
+        }
+
+        header nav ul li {
+          margin: 15px 0;
+        }
+
+        .hamburger {
+          display: flex; /* Show hamburger on mobile */
+          flex-direction: column;
+        }
+        .hero {
+          height: 300px; /* Reduced height for smaller screens */
+          padding: 20px;
+        }
+
+        .hero h2 {
+          font-size: 36px; /* Smaller font size */
+        }
+
+        .hero p {
+          font-size: 18px; /* Smaller font size */
+        }
+
+        .menu .pizza-list {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .pizza-item,
+        .pizzabg {
+          width: 90%; /* Adjust width for smaller screens */
+        }
+
+        .about-content,
+        .testimonial-cards {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .about-text,
+        .about-image {
+          width: 90%; /* Adjust width for smaller screens */
+        }
+
+        .faq-item {
+          width: 90%; /* Adjust width for smaller screens */
+        }
+
+        .contact-info {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-item {
+          margin-bottom: 20px; /* Increased margin for better spacing */
+        }
+
+        .newsletter input[type="email"] {
+          width: 80%; /* Adjust width for smaller screens */
+          margin-bottom: 10px; /* Increased margin for better spacing */
+        }
+
+        .newsletter button {
+          width: 80%; /* Adjust width for smaller screens */
+        }
+      }
+
+      /* Specific Styles for Extra Small Devices */
+      @media (max-width: 480px) {
+        header,
+        header nav,
+        footer,
+        .hero,
+        .menu,
+        .contact,
+        .about,
+        .testimonial .container,
+        .faq,
+        .newsletter {
+          width: 170%; /* Smaller font size for headings */
+        }
+        .faqs {
+          background-color: #f4f4f4;
+        }
+        .testimonial-item,
+        .faqs h2,
+        .testimonials h2 {
+          margin-left: 30%;
+        }
+        .faq-item {
+          margin-left: 20%;
+        }
+        .testimonials .container,
+        .faqs .container {
+          width: 130%;
+        }
+        .hero h2 {
+          font-size: 28px; /* Even smaller font size */
+        }
+
+        .hero p {
+          font-size: 16px; /* Even smaller font size */
+        }
+
+        .menu h2,
+        .contact h2,
+        .about h2,
+        .testimonial h2,
+        .faq h2,
+        .newsletter h2 {
+          font-size: 28px; /* Smaller font size for headings */
+        }
+
+        .contact-para {
+          margin-left: 10%;
+        }
+        .pizza-item img {
+          height: 150px; /* Adjusted image height for smaller screens */
+        }
+
+        #contact-form input,
+        #contact-form textarea,
+        #contact-form button {
+          width: 90%; /* Further adjust width for smaller screens */
+        }
+
+        .testimonial-card {
+          width: 90%; /* Adjust width for smaller screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Pizza Heaven</h1>
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="container">
+        <h2>Welcome to Pizza Heaven</h2>
+        <p>Delicious pizzas made with love and fresh ingredients.</p>
+        <a href="#menu" class="btn1">View Menu</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>
+          At Pizza Heaven, we believe in the power of great food to bring people
+          together. Established in 2024, our mission has been to create the most
+          delicious and satisfying pizzas using the freshest ingredients. Our
+          team is passionate about crafting pizzas that not only taste great but
+          also make you feel good. From our classic Margherita to our unique
+          Four Cheese blend, we have something for everyone.
+        </p>
+        <p>
+          We pride ourselves on being a part of the community, supporting local
+          farmers, and ensuring that every pizza that leaves our oven is a
+          masterpiece of flavor and quality. Join us at Pizza Heaven and
+          experience the joy of pizza in a way you never have before!
+        </p>
+        <!-- <img src="./about-us.jpg" alt="About Us Image" /> -->
+      </div>
+    </section>
+
+    <section id="menu" class="menu">
+      <div class="container">
+        <h2>Our Menu</h2>
+
+        <div class="pizza-list">
+          <div class="pizza-item">
+            <img src="./margherita.png" alt="Margherita" />
+            <h3>Margherita</h3>
+            <p>Classic cheese and tomato pizza</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+          <div class="pizza-item">
+            <img src="./pepperoni.png" alt="Pepperoni" />
+            <h3>Pepperoni</h3>
+            <p>Pepperoni, mozzarella, and tomato sauce</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+          <div class="pizza-item">
+            <img src="./veggie.png" alt="Veggie" />
+            <h3>Veggie</h3>
+            <p>Fresh vegetables and mozzarella</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+          <div class="pizza-item">
+            <img src="./hawaiian.png" alt="Hawaiian" />
+            <h3>Hawaiian</h3>
+            <p>Ham, pineapple, and mozzarella cheese</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+          <div class="pizza-item">
+            <img src="./bbq_chicken.png" alt="BBQ Chicken" />
+            <h3>BBQ Chicken</h3>
+            <p>Grilled chicken, BBQ sauce, and red onions</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+          <div class="pizza-item">
+            <img src="./four_cheese.png" alt="Four Cheese" />
+            <h3>Four Cheese</h3>
+            <p>Mozzarella, cheddar, parmesan, and blue cheese</p>
+            <button type="submit" class="btn">Buy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+        <h2>Testimonials</h2>
+        <div class="testimonial-item">
+          <p>
+            "Pizza Heaven is by far the best pizza place in town! The crust is
+            always perfectly crispy, and the toppings are fresh and delicious."
+          </p>
+          <h3>- Sarah L.</h3>
+        </div>
+        <div class="testimonial-item">
+          <p>
+            "I love the variety of pizzas offered at Pizza Heaven. Each one is a
+            flavor explosion, and the service is always friendly and prompt."
+          </p>
+          <h3>- Michael R.</h3>
+        </div>
+        <div class="testimonial-item">
+          <p>
+            "The BBQ Chicken pizza is my favorite! The smoky flavor and tender
+            chicken make it a standout. Highly recommend Pizza Heaven to anyone
+            looking for great pizza."
+          </p>
+          <h3>- Emily W.</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="faqs" class="faqs">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h3>What are your restaurant hours?</h3>
+          <p>
+            We are open from 11:00 AM to 10:00 PM, Monday through Sunday.
+            Delivery is available during these hours.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you offer vegetarian options?</h3>
+          <p>
+            Yes, we have a variety of vegetarian pizzas and options for
+            customized orders to cater to vegetarian preferences.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I order online?</h3>
+          <p>
+            Absolutely! You can place your order online through our website or
+            mobile app for pickup or delivery.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h3>Do you have gluten-free options?</h3>
+          <p>
+            Yes, we offer gluten-free crusts for many of our pizza varieties.
+            Please check our menu or contact us for more details.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p class="contact-para">
+          If you have any questions or need assistance, please reach out to us.
+          We're here to help!
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>Address</h3>
+            <p>123 Pizza Lane, Flavor Town, FT 45678</p>
+          </div>
+          <div class="contact-item">
+            <h3>Phone</h3>
+            <p>(123) 456-7890</p>
+          </div>
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p>
+              <a href="mailto:info@pizzaheaven.com">info@pizzaheaven.com</a>
+            </p>
+          </div>
+        </div>
+        <form id="contact-form">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit" class="btn1" id="btn1">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+      <div class="container">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>
+          Stay updated with the latest offers, new menu items, and pizza tips by
+          subscribing to our newsletter. We promise not to spam you!
+        </p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit" class="btn1">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Pizza Heaven. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".btn");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default action for buttons
+            alert("Your Order 😋 is on the way.......!🚚");
+          });
+        });
+      });
+
+      document
+        .getElementById("btn1")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          console.log(document.getElementById("name").value);
+          console.log(document.getElementById("email").value);
+          console.log(document.getElementById("message").value);
+        });
+
+      document
+        .getElementById("newsletter-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Thank you for subscribing to our newsletter!");
+        });
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector("header nav ul");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+      navMenu.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+    </script>
+  </body>
+</html>
